@@ -5,7 +5,8 @@
   "private": true,
   "dependencies": {
     "egg": "^2.3.0",
-    "egg-scripts": "^2.5.0"
+    "egg-scripts": "^2.5.0",
+    "naf-framework-mongoose": "^0.0.24"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -21,8 +22,8 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon",
-    "stop": "egg-scripts stop",
+    "start": "egg-scripts start --daemon --title=platform-corp",
+    "stop": "egg-scripts stop --title=platform-corp",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
