@@ -7,7 +7,13 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1517455078700_5373';
 
   // add your config here
-  config.middleware = [];
+  // config.middleware = [];
+  config.errorMongo = {
+    details: true,
+  };
+  config.errorHanler = {
+    details: true,
+  };
 
   // mongoose config
   config.mongoose = {
