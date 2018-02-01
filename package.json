@@ -1,5 +1,5 @@
 {
-  "name": "smart-corp",
+  "name": "platform-corp",
   "version": "1.0.0",
   "description": "smart jobs platform corp service",
   "private": true,
@@ -16,6 +16,7 @@
     "egg-mock": "^3.14.0",
     "eslint": "^4.16.0",
     "eslint-config-egg": "^6.0.0",
+    "eslint-config-egg-naf": "0.0.3",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {

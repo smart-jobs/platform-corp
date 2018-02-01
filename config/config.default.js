@@ -9,5 +9,17 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [];
 
+  // mongoose config
+  config.mongoose = {
+    // url: 'mongodb://root:Ziyouyanfa%23%40!@localhost:27017/naf?authSource=admin',
+    url: 'mongodb://localhost:27017/platform',
+    options: {
+      useMongoClient: true,
+      user: 'root',
+      pass: 'Ziyouyanfa#@!',
+      authSource: 'admin',
+    },
+  };
+
   return config;
 };
