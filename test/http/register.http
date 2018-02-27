@@ -5,14 +5,14 @@ content-type: application/json
 Accept: application/json
 
 {
-  "cropname": "慧安通信有限责任公司",
+  "corpname": "慧安通信有限责任公司",
   "email": "hr@chinahuian.cn",
-  "password": "123456",
+  "password": "123456"
 }
 
 ###
 #企业注册2
-POST http://localhost:7001/register?_id=xxxx HTTP/1.1
+POST http://localhost:7001/register?_id=5a95c5599ceec810809c92d5 HTTP/1.1
 #POST http://oa.chinahuian.cn/platform/user/member/create HTTP/1.1
 content-type: application/json
 Accept: application/json
@@ -25,5 +25,5 @@ Accept: application/json
     "weixin": "zsf",
     "postcode": "000000",
     "address": "湖北省武当山"
-  },
+  }
 }

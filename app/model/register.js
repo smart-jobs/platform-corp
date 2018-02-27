@@ -50,7 +50,7 @@ const SchemaDefine = {
     comment: String,
   }
 };
-const schema = new Schema(SchemaDefine, { timestamps: true });
+const schema = new Schema(SchemaDefine, { timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
 schema.index({ domain: 1, corpname: 1 });
 schema.index({ domain: 1, 'corpcode.value': 1 });
 

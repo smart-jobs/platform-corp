@@ -12,7 +12,8 @@
     ]
   },
   "fetch": {
-    "query": ["_id", "corpname"]
+    "query": ["_id", "corpname"],
+    "service": "fetchMem"
   },
   "login": {
     "requestBody": ["username", "password"]
