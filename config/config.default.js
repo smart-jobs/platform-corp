@@ -11,7 +11,7 @@ module.exports = appInfo => {
   config.errorMongo = {
     details: true,
   };
-  config.errorHanler = {
+  config.errorHandler = {
     details: true,
   };
 

@@ -18,6 +18,10 @@ content-type: application/json
 Accept: application/json
 
 {
+  "corpcode": {
+    "code": 0,
+    "value": "1234567890"
+  },
   "contact": {
     "phone": "13500000000",
     "email": "10000@qq.com",
