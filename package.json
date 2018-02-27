@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "description": "smart jobs platform corp service",
   "private": true,
+  "egg": {
+    "framework": "naf-framework-mongoose"
+  },
   "dependencies": {
     "egg": "^2.3.0",
-    "egg-scripts": "^2.5.0",
-    "naf-framework-mongoose": "^0.0.24"
+    "egg-scripts": "^2.5.1",
+    "naf-framework-mongoose": "^0.0.41",
+    "naf-core": "^0.0.16"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
-    "egg-bin": "^4.3.7",
+    "egg-bin": "^4.4.0",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.14.0",
-    "eslint": "^4.16.0",
-    "eslint-config-egg": "^6.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-egg": "^7.0.0",
     "eslint-config-egg-naf": "0.0.3",
     "webstorm-disable-index": "^1.2.0"
   },

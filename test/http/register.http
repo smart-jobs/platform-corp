@@ -1,0 +1,29 @@
+#企业注册1
+POST http://localhost:7001/create HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/user/member/create HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "cropname": "慧安通信有限责任公司",
+  "email": "hr@chinahuian.cn",
+  "password": "123456",
+}
+
+###
+#企业注册2
+POST http://localhost:7001/register?_id=xxxx HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/user/member/create HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "contact": {
+    "phone": "13500000000",
+    "email": "10000@qq.com",
+    "qq": "10000",
+    "weixin": "zsf",
+    "postcode": "000000",
+    "address": "湖北省武当山"
+  },
+}

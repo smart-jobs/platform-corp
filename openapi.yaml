@@ -1,0 +1,52 @@
+openapi: "3.0.0"
+info:
+  description: "企业用户注册相关服务接口"
+  version: "1.0.0"
+  title: "企业注册服务"
+  contact:
+    email: "dygapp@qq.com"
+servers: 
+  - url: "http://localhost:7001"
+    description: "开发环境"
+  - url: "http://oa.chinahuian.cn/api/corp"
+    description: "测试环境"
+  - url: "http://api.jilinjobs.cn/corp"
+    description: "生产环境"
+paths:
+  /create:
+    post:
+      tags:
+      - "create"
+      summary: "创建企业账号"
+      description: ""
+      operationId: "createCorpAccount"
+      parameters:
+      - name: domain
+        in: path
+        description: "分站ID"
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              properties:
+                corpname: 
+                  description: 企业名称
+                  type: string
+                email:
+                  description: 联系邮箱，作为账号绑定邮箱
+                  type: string
+                password:
+                  description: 登录密码
+                  type: string
+              required:
+                - corpname
+                - email
+                - password
+      responses:
+        405:
+          description: "Invalid input"
+        -1001:
+          description: "内部错误"
