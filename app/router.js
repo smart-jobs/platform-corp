@@ -5,7 +5,6 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
   // 企业注册
   router.post('/api/login', controller.member.login);
   router.post('/api/passwd', controller.member.passwd);
