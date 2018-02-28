@@ -2,6 +2,12 @@
   "create": {
     "requestBody": ["corpname", "email", "password"]
   },
+  "complete": {
+    "query": ["_id"],
+    "requestBody": [
+      "info", "contact", "credentials" 
+    ]
+  },
   "bind": {
     "query": ["_id"],
     "requestBody": [
