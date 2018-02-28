@@ -1,0 +1,8 @@
+###
+#审核通过
+#POST http://localhost:7001/checkPass?_id=5a95c5599ceec810809c92d5 HTTP/1.1
+POST http://oa.chinahuian.cn/platform/admin/corp/checkPass?_id=5a9675d74446e17f1df0d447 HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{}
