@@ -9,6 +9,11 @@ class RegisterController extends Controller {
     super(ctx);
     this.service = this.ctx.service.register;
   }
+
+  // async register() {
+  //   console.log(this.ctx.request.body);
+  //   this.ctx.body = 'test only';
+  // }
 }
 
 module.exports = CrudController(RegisterController, meta);

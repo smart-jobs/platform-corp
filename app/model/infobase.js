@@ -18,7 +18,7 @@ const SchemaDefine = {
     scale: codeSchema, // 企业规模
     nature: codeSchema, // 企业性质
     industry: codeSchema, // 所属行业
-    city: codeSchema, // 所属行业
+    city: codeSchema, // 所在城市
     legalPerson: String, // 法人代表
     registerTime: String, // 注册时间
     registerMoney: String, // 注册资金
@@ -33,7 +33,7 @@ const SchemaDefine = {
     postcode: { type: String, maxLength: 128 },
     address: { type: String, maxLength: 128 },
   },
-  certificate: { // 认证信息
+  credentials: { // 认证信息
     yyzz: String, // 营业执照
     zzjgdmz: String, // 组织机构代码证
     swdjz: String, // 税务登记证

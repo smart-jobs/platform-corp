@@ -1,6 +1,5 @@
 #企业注册1
-POST http://localhost:7001/create HTTP/1.1
-#POST http://oa.chinahuian.cn/platform/user/member/create HTTP/1.1
+POST http://localhost:7001/register/create HTTP/1.1
 content-type: application/json
 Accept: application/json
 
@@ -12,22 +11,55 @@ Accept: application/json
 
 ###
 #企业注册2
-POST http://localhost:7001/register?_id=5a95c5599ceec810809c92d5 HTTP/1.1
-#POST http://oa.chinahuian.cn/platform/user/member/create HTTP/1.1
+POST http://localhost:7001/register/complete?_id=5a95c5599ceec810809c92d5 HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {
-  "corpcode": {
-    "code": 0,
-    "value": "1234567890"
+  "info": {
+    "corpcode": "1234567890",
+    "corptype": "0",
+    "scale": {
+      "code": "100",
+      "name": "少于50人"
+    },
+    "nature": {
+      "code": "150002",
+      "name": "民营企业"
+    }, 
+    "industry": {
+      "code": "34",
+      "name": "软件和信息技术服务业"
+    }, 
+    "city": {
+      "code": "220100",
+      "name": "吉林省长春市"
+    }, 
+    "legalPerson": "张三丰",
+    "registerTime": "2018-02-28",
+    "registerMoney": "500万"
   },
   "contact": {
+    "person": "张三丰",
+    "mobile": "13500000000",
     "phone": "13500000000",
     "email": "10000@qq.com",
-    "qq": "10000",
-    "weixin": "zsf",
+    "url": "http://www.baidu.com",
     "postcode": "000000",
     "address": "湖北省武当山"
+  },
+  "credentials": {
+    "yyzz": "营业执照.jpg",
+    "zzjgdmz": "组织机构代码证.jpg",
+    "swdjz": "税务登记证.jpg",
+    "sbjntz": "社保缴纳通知.jpg"
   }
 }
+
+###
+#审核通过
+POST http://localhost:7001/checkPass?_id=5a95c5599ceec810809c92d5 HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{}

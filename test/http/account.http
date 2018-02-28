@@ -1,0 +1,11 @@
+#绑定账号
+POST http://localhost:7001/account/bind?_id=5a9621afa0d987496838d7f8 HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "type": "mobile",
+  "account": "13504310002",
+  "operation": 0
+}
+

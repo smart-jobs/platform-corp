@@ -8,8 +8,11 @@ module.exports = app => {
   router.get('/', controller.home.index);
   // 企业注册
   router.post('/login', controller.register.login);
-  router.post('/passwd', controller.register.passwd);
-  router.post('/create', controller.register.create);
-  router.post('/register', controller.register.register);
-  router.get('/fetch', controller.register.fetch);
+  router.post('/register/create', controller.register.create);
+  router.post('/register/complete', controller.register.complete);
+  router.post('/account/bind', controller.member.bind);
+  router.post('/account/unbind', controller.member.unbind);
+
+  // 企业管理
+  router.post('/admin/checkPass', controller.admin.checkPass);
 };

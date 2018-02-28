@@ -1,0 +1,5 @@
+{
+  "checkPass": {
+    "query": ["_id"]
+  }
+}

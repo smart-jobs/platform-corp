@@ -10,18 +10,15 @@ const codeSchema = new Schema({
 const SchemaDefine = {
   tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
-  credential: { type: String, require: true, maxLength: 128 },
-  status: { type: String, default: '0', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
-  corpcode: { // 单位组织机构代码/统一社会信用代码
-    code: String, // 证照类型代码，0：统一社会信用代码；1：单位组织机构代码
-    name: String, // 证照类型名称
-    value: String, // 企业代码值
-  },
+  password: { type: String, require: true, maxLength: 128 },
+  status: { type: Number, default: 1, maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
   info: {
+    corptype: String, // 证照类型代码，0：统一社会信用代码；1：单位组织机构代码
+    corpcode: String, // 单位组织机构代码/统一社会信用代码
     scale: codeSchema, // 企业规模
     nature: codeSchema, // 企业性质
     industry: codeSchema, // 所属行业
-    city: codeSchema, // 所属行业
+    city: codeSchema, // 所在城市
     legalPerson: String, // 法人代表
     registerTime: String, // 注册时间
     registerMoney: String, // 注册资金
@@ -36,7 +33,7 @@ const SchemaDefine = {
     postcode: { type: String, maxLength: 128 },
     address: { type: String, maxLength: 128 },
   },
-  certificate: { // 认证信息，三证合一的单位只需要上传新版营业执照，使用组织机构代码注册的单位下面四种证书至少上传两项
+  credentials: { // 认证信息，三证合一的单位只需要上传新版营业执照，使用组织机构代码注册的单位下面四种证书至少上传两项
     yyzz: String, // 营业执照
     zzjgdmz: String, // 组织机构代码证
     swdjz: String, // 税务登记证
