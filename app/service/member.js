@@ -2,9 +2,8 @@
 
 const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
-const is = require('is-type-of');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
-const { trimData } = require('naf-core').Util;
+const { trimData, isNullOrUndefined, isObject } = require('naf-core').Util;
 const { CrudService } = require('naf-framework-mongoose').Services;
 const { UserError, ErrorMessage, AccountError } = require('../util/error-code');
 const { RegisterStatus, BindStatus, OperationType } = require('../util/constants');
@@ -24,11 +23,11 @@ class RegisterService extends CrudService {
 
     // TODO: 检查数据是否存在
     let entity = await this.mMem._findOne({ corpname });
-    if (!is.nullOrUndefined(entity)) throw new BusinessError(UserError.USER_EXISTED, '企业名已存在');
+    if (!isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_EXISTED, '企业名已存在');
 
     // TODO: 未审核时重复注册检查
     entity = await this.fetchReg({ corpname, password });
-    if (!is.nullOrUndefined(entity)) return entity;
+    if (!isNullOrUndefined(entity)) return entity;
 
     // TODO:保存数据，初始记录只包含企业名称、email和密码
     const res = await this.mReg._create({
@@ -43,14 +42,14 @@ class RegisterService extends CrudService {
     // console.log(params);
     assert(_id, '_id不能为空');
     assert(data, 'data不能为空');
-    assert(is.object(info), 'info必须为对象');
-    assert(is.object(contact), 'contact必须为对象');
-    assert(is.object(credentials), 'credentials必须为对象');
+    assert(isObject(info), 'info必须为对象');
+    assert(isObject(contact), 'contact必须为对象');
+    assert(isObject(credentials), 'credentials必须为对象');
 
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
     const entity = await this.mReg._findOne({ _id });
-    if (is.nullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
+    if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
     // TODO:保存数据
     const res = await this.mReg._findOneAndUpdate({ _id }, { ...data, status: RegisterStatus.INFO });
@@ -63,13 +62,13 @@ class RegisterService extends CrudService {
     let { _id, type, account, operation } = params;
     assert(_id, '_id不能为空');
     assert(type, 'type不能为空');
-    assert(!is.nullOrUndefined(operation), 'operation不能为空');
+    assert(!isNullOrUndefined(operation), 'operation不能为空');
     assert(operation === OperationType.UNBIND || account, 'account不能为空');
 
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
     const entity = await this.mMem._findById(_id);
-    if (is.nullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
+    if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
 
     // 保存修改
     const item = entity.accounts.find(p => p.type === type);
@@ -99,7 +98,7 @@ class RegisterService extends CrudService {
     // TODO:检查数据是否存在
     // 查询已注册用户
     let entity = await this.mMem._findOne({ corpname: username });
-    if (is.nullOrUndefined(entity)) {
+    if (isNullOrUndefined(entity)) {
       // 查询新注册用户
       entity = await this.fetchReg({ corpname: username, password });
       return entity;
@@ -119,7 +118,7 @@ class RegisterService extends CrudService {
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
     const entity = await this.mMem._findById(_id);
-    if (is.nullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
+    if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
 
     // 校验口令信息
     if (oldpass !== entity.password) {

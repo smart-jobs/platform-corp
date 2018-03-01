@@ -1,10 +1,9 @@
 'use strict';
 
-const Controller = require('egg').Controller;
 const meta = require('./admin.json');
-const { CrudController } = require('naf-framework-mongoose').controller;
+const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
 
-class AdminController extends Controller {
+class AdminController extends NafController {
   constructor(ctx) {
     super(ctx);
     this.service = this.ctx.service.admin;
