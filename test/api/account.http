@@ -1,12 +1,35 @@
-#绑定账号
-#POST http://localhost:7001/account/bind?_id=5a9621afa0d987496838d7f8 HTTP/1.1
-POST http://oa.chinahuian.cn/platform/corp/account/bind?_id=5a9621afa0d987496838d7f8 HTTP/1.1
+#绑定账号1
+POST http://localhost:7001/api/account/bind?_id=5a974d5ded6feb3b3037fc6a HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/account/bind?_id=5a9621afa0d987496838d7f8 HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {
   "type": "mobile",
-  "account": "13504310002",
-  "operation": 0
+  "account": "13504310003"
+}
+
+###
+#绑定账号2
+POST http://localhost:7001/api/account/bind?_id=5a974d5ded6feb3b3037fc6a HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/account/bind?_id=5a9621afa0d987496838d7f8 HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "type": "email",
+  "account": "13504310003@139.com"
+}
+
+###
+#检查帐号是否存在
+POST http://localhost:7001/api/account/check HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/account/check HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "type": "mobile",
+  "account": "13504310003"
 }
 

@@ -1,19 +1,20 @@
 #企业注册1
-#POST http://localhost:7001/register/create HTTP/1.1
-POST http://oa.chinahuian.cn/platform/corp/register/create HTTP/1.1
+POST http://localhost:7001/api/register/create HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/register/create HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {
-  "corpname": "慧安通信有限责任公司",
-  "email": "hr@chinahuian.cn",
+  "corpname": "福瑞科技",
+  "email": "frkj@qq.cn",
   "password": "123456"
 }
 
 ###
 #企业注册2
 #POST http://localhost:7001/register/complete?_id=5a95c5599ceec810809c92d5 HTTP/1.1
-POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
+POST http://localhost:7001/api/register/complete?_id=5a974b5e20470429f061e2a2 HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
 content-type: application/json
 Accept: application/json
 
@@ -37,18 +38,18 @@ Accept: application/json
       "code": "220100",
       "name": "吉林省长春市"
     }, 
-    "legalPerson": "张三丰",
+    "legalPerson": "杨帆",
     "registerTime": "2018-02-28",
-    "registerMoney": "500万"
+    "registerMoney": "100万"
   },
   "contact": {
-    "person": "张三丰",
+    "person": "杨帆",
     "mobile": "13500000000",
     "phone": "13500000000",
     "email": "10000@qq.com",
     "url": "http://www.baidu.com",
-    "postcode": "000000",
-    "address": "湖北省武当山"
+    "postcode": "130000",
+    "address": "吉林省长春市"
   },
   "credentials": {
     "yyzz": "营业执照.jpg",
@@ -56,4 +57,26 @@ Accept: application/json
     "swdjz": "税务登记证.jpg",
     "sbjntz": "社保缴纳通知.jpg"
   }
+}
+
+###
+#检查企业代码是否存在
+POST http://localhost:7001/api/register/check HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/register/check HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+    "corpcode": "1234567890"
+}
+
+###
+#检查企业代码是否存在
+POST http://localhost:7001/api/register/check HTTP/1.1
+#POST http://oa.chinahuian.cn/platform/corp/register/check HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+    "corpname": "福瑞科技"
 }

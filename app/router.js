@@ -10,9 +10,11 @@ module.exports = app => {
   router.post('/api/passwd', controller.member.passwd);
   router.post('/api/register/create', controller.member.create);
   router.post('/api/register/complete', controller.member.complete);
+  router.post('/api/register/check', controller.member.checkCorp);
   router.post('/api/account/bind', controller.member.bind);
   router.post('/api/account/unbind', controller.member.unbind);
+  router.post('/api/account/check', controller.member.checkAccount);
 
   // 企业管理
-  router.post('/admin/checkPass', controller.admin.checkPass);
+  router.post('/admin/reviewReg', controller.admin.reviewReg);
 };

@@ -11,17 +11,17 @@
   "bind": {
     "query": ["_id"],
     "requestBody": [
-      "type", "account", "operation"
+      "type", "account"
     ],
     "options": {
-      "operation": 0
+      "operation": 1
     },
     "service": "bind"
   },
   "unbind": {
     "query": ["_id"],
     "requestBody": [
-      "type", "account", "operation"
+      "type", "account"
     ],
     "options": {
       "operation": 0

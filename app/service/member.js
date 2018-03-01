@@ -4,7 +4,7 @@ const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
 const { isNullOrUndefined, isObject } = require('util');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
-// const { isEmail } = require('naf-core').Util;
+const { trimData } = require('naf-core').Util;
 const { CrudService } = require('naf-framework-mongoose').Services;
 const { UserError, ErrorMessage, AccountError } = require('../util/error-code');
 const { RegisterStatus, BindStatus, OperationType } = require('../util/constants');
@@ -58,7 +58,9 @@ class RegisterService extends CrudService {
   }
 
   // 帐号绑定
-  async bind({ _id, type, account, operation }) {
+  async bind(params) {
+    // console.log(params);
+    let { _id, type, account, operation } = params;
     assert(_id, '_id不能为空');
     assert(type, 'type不能为空');
     assert(!isNullOrUndefined(operation), 'operation不能为空');
@@ -155,6 +157,13 @@ class RegisterService extends CrudService {
     return entity;
   }
 
+  // 检查绑定帐号是否存在
+  async fetchByAccount({ type, account }) {
+    assert(account, 'account不能为空');
+
+    const entity = this.mMem._findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: -1 });
+    return entity;
+  }
 }
 
 module.exports = RegisterService;

@@ -10,12 +10,13 @@ const codeSchema = new Schema({
 // 绑定账号
 const accountSchema = new Schema({
   // 帐号类型：qq、weixin、email、mobile、weibo等
-  type: { unique: true, type: String, required: true, maxLength: 64 },
+  type: { type: String, required: true, maxLength: 64 },
   // 账号绑定ID
   account: { type: String, required: true, maxLength: 128 },
   // 绑定状态: 0-未验证、1-已绑定、2-解除绑定
   bind: { type: Number, required: true, maxLength: 64, default: 0 },
 }, { timestamps: true });
+accountSchema.index({ type: 1, account: 1 });
 
 // 企业注册信息
 const SchemaDefine = {
@@ -64,11 +65,9 @@ const SchemaDefine = {
   }
 };
 const schema = new Schema(SchemaDefine, { timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
-schema.index({ domain: 1, corpname: 1 });
-schema.index({ domain: 1, 'corpcode.value': 1 });
-schema.index({ domain: 1, 'account.mobile': 1 });
-schema.index({ domain: 1, 'account.email': 1 });
-schema.index({ domain: 1, 'account.weixin': 1 });
+schema.index({ tenant: 1, corpname: 1 });
+schema.index({ tenant: 1, 'info.corpcode': 1 });
+schema.index({ tenant: 1, 'accounts.type': 1, 'accounts.account': 1 });
 
 module.exports = app => {
   const { mongoose } = app;
