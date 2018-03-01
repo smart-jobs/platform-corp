@@ -1,8 +1,8 @@
 'use strict';
 
-const { isNullOrUndefined } = require('util');
 const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
+const is = require('is-type-of');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 // const { isEmail } = require('naf-core').Util;
 const { CrudService } = require('naf-framework-mongoose').Services;
@@ -22,7 +22,7 @@ class RegisterService extends CrudService {
 
     // TODO: 检查数据是否存在
     const entity = await this.mReg._findOne({ _id: ObjectID(regId) });
-    if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
+    if (is.nullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
     const { corpname, password, info, contact, credentials } = entity;
     // TODO:保存数据，初始记录只包含企业名称、email和密码
@@ -40,11 +40,11 @@ class RegisterService extends CrudService {
     // console.log(params);
     const { _id, status } = params;
     assert(_id, '_id不能为空');
-    assert(!isNullOrUndefined(status), 'status不能为空');
+    assert(!is.nullOrUndefined(status), 'status不能为空');
 
     // 查询已注册用户
     let entity = await this.mReg._findById(ObjectID(_id));
-    if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
+    if (is.nullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     if (entity.status !== RegisterStatus.INFO) throw new BusinessError(ErrorCode.BUSINESS, '用户状态无效');
 
     if (status === RegisterStatus.NORMAL) {
