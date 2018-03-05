@@ -13,12 +13,13 @@ Accept: application/json
 ###
 #企业注册2
 #POST http://localhost:7001/register/complete?_id=5a95c5599ceec810809c92d5 HTTP/1.1
-POST http://localhost:7001/api/register/complete?_id=5a974b5e20470429f061e2a2 HTTP/1.1
-#POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
+#POST http://localhost:7001/api/register/complete?_id=5a974b5e20470429f061e2a2 HTTP/1.1
+POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {
+  "description": "none",
   "info": {
     "corpcode": "1234567890",
     "corptype": "0",

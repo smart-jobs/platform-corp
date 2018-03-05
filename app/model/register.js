@@ -16,7 +16,7 @@ const SchemaDefine = {
   info: {
     corptype: String, // 证照类型代码，0：统一社会信用代码；1：单位组织机构代码
     corpcode: String, // 单位组织机构代码/统一社会信用代码
-    scale: String, // 企业规模
+    scale: codeSchema, // 企业规模
     nature: codeSchema, // 企业性质
     industry: codeSchema, // 所属行业
     city: codeSchema, // 所在城市
