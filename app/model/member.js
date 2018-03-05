@@ -14,7 +14,7 @@ const accountSchema = new Schema({
   // 账号绑定ID
   account: { type: String, required: true, maxLength: 128 },
   // 绑定状态: 0-未验证、1-已绑定、2-解除绑定
-  bind: { type: Number, required: true, maxLength: 64, default: 0 },
+  bind: { type: String, required: true, maxLength: 64, default: '0' },
 }, { timestamps: true });
 accountSchema.index({ type: 1, account: 1 });
 
