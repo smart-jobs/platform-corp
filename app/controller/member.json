@@ -5,7 +5,7 @@
   "complete": {
     "query": ["_id"],
     "requestBody": [
-      "info", "contact", "credentials" 
+      "description", "info", "contact", "credentials" 
     ]
   },
   "bind": {

@@ -38,10 +38,11 @@ class RegisterService extends CrudService {
     return res;
   }
 
-  async complete({ _id, info, contact, credentials }, data) {
+  async complete({ _id, description, info, contact, credentials }, data) {
     // console.log(params);
     assert(_id, '_id不能为空');
     assert(data, 'data不能为空');
+    assert(description, 'description不能为空');
     assert(isObject(info), 'info必须为对象');
     assert(isObject(contact), 'contact必须为对象');
     assert(isObject(credentials), 'credentials必须为对象');
