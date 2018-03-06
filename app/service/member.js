@@ -8,7 +8,7 @@ const { CrudService } = require('naf-framework-mongoose').Services;
 const { UserError, ErrorMessage, AccountError } = require('../util/error-code');
 const { RegisterStatus, BindStatus, OperationType } = require('../util/constants');
 
-class RegisterService extends CrudService {
+class MembershipService extends CrudService {
   constructor(ctx) {
     super(ctx, 'plat_corp_register');
     this.mReg = this._model(ctx.model.Register);
@@ -102,12 +102,14 @@ class RegisterService extends CrudService {
     if (isNullOrUndefined(entity)) {
       // 查询新注册用户
       entity = await this.fetchReg({ corpname: username, password });
-      return entity;
+    }
+    if (isNullOrUndefined(entity)) {
+      throw new BusinessError(ErrorCode.USER_NOT_EXIST);
     }
 
     // 校验口令信息
     if (password !== entity.password) throw new BusinessError(ErrorCode.BAD_PASSWORD);
-    return this.fetchMem({ corpname: entity });
+    return trimData(entity.toObject(), [ 'password', 'accounts', 'meta' ]);
   }
 
   // 修改账户密码
@@ -166,4 +168,4 @@ class RegisterService extends CrudService {
   }
 }
 
-module.exports = RegisterService;
+module.exports = MembershipService;

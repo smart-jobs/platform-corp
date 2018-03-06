@@ -7,7 +7,7 @@ const { isNullOrUndefined } = require('naf-core').Util;
 const { CrudService } = require('naf-framework-mongoose').Services;
 const { MembershipStatus, RegisterStatus } = require('../util/constants');
 
-class RegisterService extends CrudService {
+class AdminService extends CrudService {
   constructor(ctx) {
     super(ctx, 'plat_corp_register');
     this.mReg = this._model(ctx.model.Register);
@@ -62,4 +62,4 @@ class RegisterService extends CrudService {
   }
 }
 
-module.exports = RegisterService;
+module.exports = AdminService;

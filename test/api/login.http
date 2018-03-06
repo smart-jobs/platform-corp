@@ -1,0 +1,23 @@
+
+###
+# 登录
+#POST http://localhost:7001/api/login HTTP/1.1
+POST http://oa.chinahuian.cn/platform/corp/login HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "username": "福瑞科技",
+  "password": "123456"
+}
+
+###
+#修改密码
+POST http://oa.chinahuian.cn/platform/corp/passwd?_id=5a974d5ded6feb3b3037fc6a HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+  "oldpass": "123456",
+  "newpass": "111111"
+}
