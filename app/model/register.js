@@ -5,7 +5,8 @@ const Schema = require('mongoose').Schema;
 const codeSchema = new Schema({
   code: { type: String, required: true, maxLength: 64 },
   name: String,
-});
+}, { _id: false });
+
 // 企业注册信息
 const SchemaDefine = {
   tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
@@ -49,8 +50,8 @@ const SchemaDefine = {
   }
 };
 const schema = new Schema(SchemaDefine, { timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
-schema.index({ domain: 1, corpname: 1 });
-schema.index({ domain: 1, 'corpcode.value': 1 });
+schema.index({ tenant: 1, corpname: 1 });
+schema.index({ tenant: 1, 'corpcode.value': 1 });
 
 module.exports = app => {
   const { mongoose } = app;

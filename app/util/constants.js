@@ -9,8 +9,8 @@ exports.RegisterStatus = {
 
 exports.MembershipStatus = {
   NORMAL: '0', // 正常用户状态
-  CHANGING: '1', // 信息变更，等待审核
-  REVOKE: '2', // 用户备注销
+  CHANGING: '4', // 信息变更，等待审核
+  REVOKE: '5', // 用户备注销
 };
 exports.OperationType = {
   UNBIND: '0', // 解除绑定

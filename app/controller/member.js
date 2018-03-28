@@ -1,9 +1,10 @@
 'use strict';
 
 const meta = require('./member.json');
-const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
+const { Controller } = require('egg');
+const { CrudController } = require('naf-framework-mongoose').Controllers;
 
-class MembershipController extends NafController {
+class MembershipController extends Controller {
   constructor(ctx) {
     super(ctx);
     this.service = this.ctx.service.member;

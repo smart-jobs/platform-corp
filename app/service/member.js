@@ -38,6 +38,11 @@ class MembershipService extends CrudService {
     return res;
   }
 
+  async update(filter, data) {
+    const res = await super.update(filter, data);
+    return trimData(res, [ 'password' ]);
+  }
+
   async complete({ _id, description, info, contact, credentials }, data) {
     // console.log(params);
     assert(_id, '_id不能为空');
@@ -155,7 +160,7 @@ class MembershipService extends CrudService {
 
     // 查询已注册用户
     const query = _id ? { _id: ObjectID(_id) } : { corpname };
-    const entity = await this.mMem._findOne(query, { password: -1 });
+    const entity = await this.mMem._findOne(query, { password: 0 });
     return entity;
   }
 
@@ -163,7 +168,18 @@ class MembershipService extends CrudService {
   async fetchByAccount({ type, account }) {
     assert(account, 'account不能为空');
 
-    const entity = this.mMem._findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: -1 });
+    const entity = this.mMem._findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: 0 });
+    return entity;
+  }
+
+  // 检查绑定帐号是否存在
+  async info({ _id, simple }) {
+    assert(_id, '_id不能为空');
+
+    const entity = this.mMem._findOne({ _id: ObjectID(_id) },
+      simple ?
+        { corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 }
+        : { corpname: 1, info: 1, contact: 1 });
     return entity;
   }
 }

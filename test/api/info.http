@@ -1,0 +1,12 @@
+
+###
+# 获取单位信息
+GET http://localhost:7001/api/info/5a9621afa0d987496838d7f8 HTTP/1.1
+#GET http://oa.chinahuian.cn/platform/corp/info/ HTTP/1.1
+Accept: application/json
+
+###
+# 获取单位简单信息
+GET http://localhost:7001/api/simple/5a9621afa0d987496838d7f8 HTTP/1.1
+#GET http://oa.chinahuian.cn/platform/corp/info/ HTTP/1.1
+Accept: application/json
