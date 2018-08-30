@@ -3,7 +3,8 @@
 const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
-const { trimData, isNullOrUndefined, isObject } = require('naf-core').Util;
+const { trimData, isNullOrUndefined } = require('naf-core').Util;
+const { isObject } = require('lodash');
 const { CrudService } = require('naf-framework-mongoose').Services;
 const { UserError, ErrorMessage, AccountError } = require('../util/error-code');
 const { RegisterStatus, BindStatus, OperationType } = require('../util/constants');
