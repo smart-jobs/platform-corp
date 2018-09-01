@@ -65,10 +65,10 @@ const SchemaDefine = {
     comment: String,
   }
 };
-const schema = new Schema(SchemaDefine, { timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
-schema.index({ tenant: 1, corpname: 1 });
-schema.index({ tenant: 1, 'info.corpcode': 1 });
-schema.index({ tenant: 1, 'accounts.type': 1, 'accounts.account': 1 });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
+schema.index({ corpname: 1 });
+schema.index({ 'info.corpcode': 1 });
+schema.index({ 'accounts.type': 1, 'accounts.account': 1 });
 
 module.exports = app => {
   const { mongoose } = app;

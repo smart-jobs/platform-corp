@@ -49,9 +49,9 @@ const SchemaDefine = {
     comment: String,
   }
 };
-const schema = new Schema(SchemaDefine, { timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
-schema.index({ tenant: 1, corpname: 1 });
-schema.index({ tenant: 1, 'corpcode.value': 1 });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
+schema.index({ corpname: 1 });
+schema.index({ 'corpcode.value': 1 });
 
 module.exports = app => {
   const { mongoose } = app;

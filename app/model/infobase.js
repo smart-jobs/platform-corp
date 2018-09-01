@@ -47,7 +47,7 @@ const SchemaDefine = {
     comment: String,
   }
 };
-const schema = new Schema(SchemaDefine, { timestamps: true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
 schema.index({ corpname: 1 });
 schema.index({ 'corpcode.value': 1 });
 

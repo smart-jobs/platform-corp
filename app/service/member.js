@@ -5,16 +5,16 @@ const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { trimData, isNullOrUndefined } = require('naf-core').Util;
 const { isObject } = require('lodash');
-const { CrudService } = require('naf-framework-mongoose').Services;
+const { CrudService } = require('naf-framework-mongoose/lib/service');
 const { UserError, ErrorMessage, AccountError } = require('../util/error-code');
 const { RegisterStatus, BindStatus, OperationType } = require('../util/constants');
 
 class MembershipService extends CrudService {
   constructor(ctx) {
     super(ctx, 'plat_corp_register');
-    this.mReg = this._model(ctx.model.Register);
-    this.mMem = this._model(ctx.model.Member);
-    this.model = this.mMem.model;
+    this.mReg = this.ctx.model.Register;
+    this.mMem = this.ctx.model.Member;
+    this.model = this.mMem;
   }
 
   async create({ corpname, email, password }) {
@@ -23,7 +23,7 @@ class MembershipService extends CrudService {
     assert(password, 'password不能为空');
 
     // TODO: 检查数据是否存在
-    let entity = await this.mMem._findOne({ corpname });
+    let entity = await this.mMem.findOne({ corpname }).exec();
     if (!isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_EXISTED, '企业名已存在');
 
     // TODO: 未审核时重复注册检查
@@ -31,7 +31,7 @@ class MembershipService extends CrudService {
     if (!isNullOrUndefined(entity)) return entity;
 
     // TODO:保存数据，初始记录只包含企业名称、email和密码
-    const res = await this.mReg._create({
+    const res = await this.mReg.create({
       corpname,
       password,
       contact: { email },
@@ -55,11 +55,11 @@ class MembershipService extends CrudService {
 
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
-    const entity = await this.mReg._findOne({ _id });
+    const entity = await this.mReg.findOne({ _id }).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
     // TODO:保存数据
-    const res = await this.mReg._findOneAndUpdate({ _id }, { ...data, status: RegisterStatus.INFO });
+    const res = await this.mReg.findOneAndUpdate({ _id }, { ...data, status: RegisterStatus.INFO }).exec();
     return res;
   }
 
@@ -74,7 +74,7 @@ class MembershipService extends CrudService {
 
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
-    const entity = await this.mMem._findById(_id);
+    const entity = await this.mMem.findById(_id).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
 
     // 保存修改
@@ -104,7 +104,7 @@ class MembershipService extends CrudService {
 
     // TODO:检查数据是否存在
     // 查询已注册用户
-    let entity = await this.mMem._findOne({ corpname: username });
+    let entity = await this.mMem.findOne({ corpname: username }).exec();
     if (isNullOrUndefined(entity)) {
       // 查询新注册用户
       entity = await this.fetchReg({ corpname: username, password });
@@ -126,7 +126,7 @@ class MembershipService extends CrudService {
 
     _id = ObjectID(_id);
     // TODO:检查数据是否存在
-    const entity = await this.mMem._findById(_id);
+    const entity = await this.mMem.findById(_id).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
 
     // 校验口令信息
@@ -135,7 +135,7 @@ class MembershipService extends CrudService {
     }
 
     // 保存修改
-    await this.mMem._findOneAndUpdate({ _id }, { password: newpass });
+    await this.mMem.findOneAndUpdate({ _id }, { password: newpass }).exec();
 
     return 'updated';
   }
@@ -146,10 +146,10 @@ class MembershipService extends CrudService {
 
     // 查询所有注册信息
     if (_id) {
-      return await this.mReg._find({ _id: ObjectID(_id) });
+      return await this.mReg.find({ _id: ObjectID(_id) }).exec();
     }
 
-    const rs = await this.mReg._find({ corpname });
+    const rs = await this.mReg.find({ corpname }).exec();
     if (rs) {
       return rs.find(p => p.password === password);
     }
@@ -161,7 +161,7 @@ class MembershipService extends CrudService {
 
     // 查询已注册用户
     const query = _id ? { _id: ObjectID(_id) } : { corpname };
-    const entity = await this.mMem._findOne(query, { password: 0 });
+    const entity = await this.mMem.findOne(query, { password: 0 }).exec();
     return entity;
   }
 
@@ -169,7 +169,7 @@ class MembershipService extends CrudService {
   async fetchByAccount({ type, account }) {
     assert(account, 'account不能为空');
 
-    const entity = this.mMem._findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: 0 });
+    const entity = this.mMem.findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: 0 }).exec();
     return entity;
   }
 
@@ -177,10 +177,10 @@ class MembershipService extends CrudService {
   async info({ _id, simple }) {
     assert(_id, '_id不能为空');
 
-    const entity = this.mMem._findOne({ _id: ObjectID(_id) },
+    const entity = this.mMem.findOne({ _id: ObjectID(_id) },
       simple ?
         { corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 }
-        : { corpname: 1, info: 1, contact: 1 });
+        : { corpname: 1, info: 1, contact: 1 }).exec();
     return entity;
   }
 }
