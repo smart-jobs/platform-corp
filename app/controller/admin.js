@@ -2,7 +2,7 @@
 
 const meta = require('./admin.json');
 const { Controller } = require('egg');
-const { CrudController } = require('naf-framework-mongoose').Controllers;
+const { CrudController } = require('naf-framework-mongoose/lib/controller');
 
 class AdminController extends Controller {
   constructor(ctx) {
