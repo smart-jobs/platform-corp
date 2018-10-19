@@ -7,7 +7,7 @@ const codeSchema = new Schema({
   name: String,
 }, { _id: false });
 
-// 企业注册信息
+// 企业注册信息，多租户模式
 const SchemaDefine = {
   tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称

@@ -18,7 +18,7 @@ const accountSchema = new Schema({
 }, { timestamps: true });
 accountSchema.index({ type: 1, account: 1 });
 
-// 企业注册信息
+// 企业注册信息，多租户模式
 const SchemaDefine = {
   tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称

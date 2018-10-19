@@ -6,7 +6,7 @@ const codeSchema = new Schema({
   code: { type: String, required: true, maxLength: 64 },
   name: String,
 });
-// 企业信息总库
+// 企业信息总库,非多租户模式
 const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   corpcode: { // 单位组织机构代码/统一社会信用代码
@@ -47,7 +47,7 @@ const SchemaDefine = {
     comment: String,
   }
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': false, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
 schema.index({ corpname: 1 });
 schema.index({ 'corpcode.value': 1 });
 
