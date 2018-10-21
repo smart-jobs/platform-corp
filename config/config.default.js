@@ -20,10 +20,11 @@ module.exports = appInfo => {
     // url: 'mongodb://root:Ziyouyanfa%23%40!@localhost:27017/naf?authSource=admin',
     url: 'mongodb://localhost:27017/platform',
     options: {
-      useMongoClient: true,
       user: 'root',
       pass: 'Ziyouyanfa#@!',
       authSource: 'admin',
+      useNewUrlParser: true,
+      useCreateIndex: true,
     },
   };
 
