@@ -12,7 +12,7 @@ module.exports = () => {
 
   // mongoose config
   config.mongoose = {
-    url: 'mongodb://localhost:27018/naf',
+    url: 'mongodb://localhost:27018/platform',
     options: {
       user: 'root',
       pass: 'Ziyouyanfa#@!',
