@@ -1,11 +1,7 @@
 'use strict';
 const Schema = require('mongoose').Schema;
+const { CodeNamePair } = require('naf-framework-mongoose/lib/model/schema');
 
-// 代码
-const codeSchema = new Schema({
-  code: { type: String, required: true, maxLength: 64 },
-  name: String,
-});
 // 企业信息总库,非多租户模式
 const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
@@ -15,10 +11,10 @@ const SchemaDefine = {
     value: String, // 企业代码值
   },
   info: {
-    scale: codeSchema, // 企业规模
-    nature: codeSchema, // 企业性质
-    industry: codeSchema, // 所属行业
-    city: codeSchema, // 所在城市
+    scale: CodeNamePair, // 企业规模
+    nature: CodeNamePair, // 企业性质
+    industry: CodeNamePair, // 所属行业
+    city: CodeNamePair, // 所在城市
     legalPerson: String, // 法人代表
     registerTime: String, // 注册时间
     registerMoney: String, // 注册资金
