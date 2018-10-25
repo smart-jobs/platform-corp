@@ -1,6 +1,6 @@
 'use strict';
 const Schema = require('mongoose').Schema;
-const { CodeNamePair } = require('naf-framework-mongoose/lib/model/schema');
+const { CodeNamePair, Secret } = require('naf-framework-mongoose/lib/model/schema');
 
 // 绑定账号
 const accountSchema = new Schema({
@@ -16,7 +16,7 @@ accountSchema.index({ type: 1, account: 1 });
 // 企业注册信息，多租户模式
 const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
-  password: { type: String, required: true, maxLength: 128 },
+  passwd: { type: Secret, select: false },
   status: { type: String, default: '0', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
   description: { type: String, default: '', maxLength: 10240 }, // 企业描述详情
   info: {

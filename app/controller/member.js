@@ -1,6 +1,6 @@
 'use strict';
 
-const meta = require('./member.json');
+const meta = require('./.member.js');
 const { Controller } = require('egg');
 const { CrudController } = require('naf-framework-mongoose/lib/controller');
 

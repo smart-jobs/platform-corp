@@ -33,7 +33,7 @@ class MembershipService extends CrudService {
     // TODO:保存数据，初始记录只包含企业名称、email和密码
     const res = await this.mReg.create({
       corpname,
-      password,
+      passwd: { type: 'plain', secret: password },
       contact: { email },
       status: RegisterStatus.NEW });
     return res;
@@ -41,7 +41,7 @@ class MembershipService extends CrudService {
 
   async update(filter, data) {
     const res = await super.update(filter, data);
-    return trimData(res, [ 'password' ]);
+    return res;
   }
 
   async complete({ _id, description, info, contact, credentials }, data) {
@@ -104,18 +104,19 @@ class MembershipService extends CrudService {
 
     // TODO:检查数据是否存在
     // 查询已注册用户
-    let entity = await this.mMem.findOne({ corpname: username }).exec();
+    let entity = await this.mMem.findOne({ corpname: username }, '+passwd').exec();
     if (isNullOrUndefined(entity)) {
       // 查询新注册用户
       entity = await this.fetchReg({ corpname: username, password });
+    } else {
+      // 校验口令信息
+      if (entity.passwd && password !== entity.passwd.secret) throw new BusinessError(ErrorCode.BAD_PASSWORD);
     }
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST);
     }
 
-    // 校验口令信息
-    if (password !== entity.password) throw new BusinessError(ErrorCode.BAD_PASSWORD);
-    return trimData(entity.toObject(), [ 'password', 'accounts', 'meta' ]);
+    return trimData(entity.toObject(), [ 'accounts', 'meta' ]);
   }
 
   // 修改账户密码
@@ -130,12 +131,17 @@ class MembershipService extends CrudService {
     if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
 
     // 校验口令信息
-    if (oldpass !== entity.password) {
+    if (entity.passwd && oldpass !== entity.passwd.secret) {
       throw new BusinessError(AccountError.oldpass.errcode, AccountError.oldpass.errmsg);
     }
 
     // 保存修改
-    await this.mMem.findOneAndUpdate({ _id }, { password: newpass }).exec();
+    if (entity.passwd) {
+      entity.passwd.secret = newpass;
+    } else {
+      entity.passwd = { type: 'plain', secret: newpass };
+    }
+    await entity.save();
 
     return 'updated';
   }
@@ -149,9 +155,9 @@ class MembershipService extends CrudService {
       return await this.mReg.find({ _id: ObjectID(_id) }).exec();
     }
 
-    const rs = await this.mReg.find({ corpname }).exec();
+    const rs = await this.mReg.find({ corpname }, '+passwd').exec();
     if (rs) {
-      return rs.find(p => p.password === password);
+      return rs.find(p => p.passwd && p.passwd.secret === password);
     }
   }
 
@@ -161,7 +167,7 @@ class MembershipService extends CrudService {
 
     // 查询已注册用户
     const query = _id ? { _id: ObjectID(_id) } : { corpname };
-    const entity = await this.mMem.findOne(query, { password: 0 }).exec();
+    const entity = await this.mMem.findOne(query).exec();
     return entity;
   }
 
@@ -169,7 +175,7 @@ class MembershipService extends CrudService {
   async fetchByAccount({ type, account }) {
     assert(account, 'account不能为空');
 
-    const entity = this.mMem.findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, { password: 0 }).exec();
+    const entity = this.mMem.findOne({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }).exec();
     return entity;
   }
 

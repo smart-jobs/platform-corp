@@ -1,4 +1,4 @@
-{
+module.exports = {
   "create": {
     "requestBody": ["corpname", "email", "password"]
   },
@@ -44,5 +44,16 @@
       "simple": true
     },
     "service": "info"
-  }
-}
+  },
+  "info_g": {
+    "query": ["_id"],
+    "service": "memberGlobal.info"
+  },
+  "simple_g": {
+    "query": ["_id"],
+    "options": {
+      "simple": true
+    },
+    "service": "memberGlobal.info"
+  },
+};

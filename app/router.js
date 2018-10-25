@@ -16,6 +16,8 @@ module.exports = app => {
   router.post('/api/account/check', controller.member.checkAccount);
   router.get('/api/info/:_id', controller.member.info);
   router.get('/api/simple/:_id', controller.member.simple);
+  router.get('/api/info', controller.member.info_g);
+  router.get('/api/simple', controller.member.simple_g);
 
   // 企业管理
   router.post('/admin/reviewReg', controller.admin.reviewReg);
