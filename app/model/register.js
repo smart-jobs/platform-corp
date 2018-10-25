@@ -4,9 +4,8 @@ const { CodeNamePair } = require('naf-framework-mongoose/lib/model/schema');
 
 // 企业注册信息，多租户模式
 const SchemaDefine = {
-  tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
-  password: { type: String, require: true, maxLength: 128 },
+  password: { type: String, required: true, maxLength: 128 },
   status: { type: String, default: '1', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
   description: { type: String, default: '', maxLength: 10240 }, // 企业描述详情
   info: {
