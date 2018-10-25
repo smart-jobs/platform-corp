@@ -45,6 +45,7 @@ module.exports = {
     },
     "service": "info"
   },
+  // 【全站】
   "info_g": {
     "query": ["_id"],
     "service": "memberGlobal.info"

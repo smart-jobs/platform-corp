@@ -5,9 +5,9 @@ const { CodeNamePair, Secret } = require('naf-framework-mongoose/lib/model/schem
 // 企业注册信息，多租户模式
 const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
-  passwd: { type: Secret, select: false },
-  status: { type: String, default: '1', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
   description: { type: String, default: '', maxLength: 10240 }, // 企业描述详情
+  status: { type: String, default: '1', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
+  passwd: { type: Secret, select: false },
   info: {
     corptype: String, // 证照类型代码，0：统一社会信用代码；1：单位组织机构代码
     corpcode: String, // 单位组织机构代码/统一社会信用代码

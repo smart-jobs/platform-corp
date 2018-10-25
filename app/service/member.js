@@ -179,7 +179,7 @@ class MembershipService extends CrudService {
     return entity;
   }
 
-  // 检查绑定帐号是否存在
+  // 获取企业信息
   async info({ _id, simple }) {
     assert(_id, '_id不能为空');
 
