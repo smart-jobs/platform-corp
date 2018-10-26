@@ -1,6 +1,6 @@
 'use strict';
 
-const ObjectID = require('mongodb').ObjectID;
+const { ObjectId } = require('mongoose').Types;
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { trimData, isNullOrUndefined } = require('naf-core').Util;
@@ -53,7 +53,7 @@ class MembershipService extends CrudService {
     assert(isObject(contact), 'contact必须为对象');
     assert(isObject(credentials), 'credentials必须为对象');
 
-    _id = ObjectID(_id);
+    _id = ObjectId(_id);
     // TODO:检查数据是否存在
     const entity = await this.mReg.findOne({ _id }).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
@@ -72,7 +72,7 @@ class MembershipService extends CrudService {
     assert(!isNullOrUndefined(operation), 'operation不能为空');
     assert(operation === OperationType.UNBIND || account, 'account不能为空');
 
-    _id = ObjectID(_id);
+    _id = ObjectId(_id);
     // TODO:检查数据是否存在
     const entity = await this.mMem.findById(_id).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
@@ -125,7 +125,7 @@ class MembershipService extends CrudService {
     assert(oldpass, 'oldpass不能为空');
     assert(newpass, 'newpass不能为空');
 
-    _id = ObjectID(_id);
+    _id = ObjectId(_id);
     // TODO:检查数据是否存在
     const entity = await this.mMem.findById(_id).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(UserError.USER_NOT_EXIST, ErrorMessage.USER_NOT_EXIST);
@@ -152,7 +152,7 @@ class MembershipService extends CrudService {
 
     // 查询所有注册信息
     if (_id) {
-      return await this.mReg.find({ _id: ObjectID(_id) }).exec();
+      return await this.mReg.find({ _id: ObjectId(_id) }).exec();
     }
 
     const rs = await this.mReg.find({ corpname }, '+passwd').exec();
@@ -166,7 +166,7 @@ class MembershipService extends CrudService {
     assert(corpname || _id, '_id和corpname不能同时为空');
 
     // 查询已注册用户
-    const query = _id ? { _id: ObjectID(_id) } : { corpname };
+    const query = _id ? { _id: ObjectId(_id) } : { corpname };
     const entity = await this.mMem.findOne(query).exec();
     return entity;
   }
@@ -183,7 +183,7 @@ class MembershipService extends CrudService {
   async info({ _id, simple }) {
     assert(_id, '_id不能为空');
 
-    const entity = this.mMem.findOne({ _id: ObjectID(_id) },
+    const entity = this.mMem.findOne({ _id: ObjectId(_id) },
       simple ?
         { corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 }
         : { corpname: 1, info: 1, contact: 1 }).exec();

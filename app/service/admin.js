@@ -1,6 +1,6 @@
 'use strict';
 
-const ObjectID = require('mongodb').ObjectID;
+const { ObjectId } = require('mongoose').Types;
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { isNullOrUndefined } = require('naf-core').Util;
@@ -20,7 +20,7 @@ class AdminService extends CrudService {
     assert(regId, 'regId不能为空');
 
     // TODO: 检查数据是否存在
-    const entity = await this.mReg.findOne({ _id: ObjectID(regId) }).exec();
+    const entity = await this.mReg.findOne({ _id: ObjectId(regId) }).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
     const { corpname, password, info, contact, credentials } = entity;
@@ -42,7 +42,7 @@ class AdminService extends CrudService {
     assert(!isNullOrUndefined(status), 'status不能为空');
 
     // 查询已注册用户
-    let entity = await this.mReg.findById(ObjectID(_id)).exec();
+    let entity = await this.mReg.findById(ObjectId(_id)).exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     if (entity.status !== RegisterStatus.INFO) throw new BusinessError(ErrorCode.BUSINESS, '用户状态无效');
 
@@ -50,10 +50,10 @@ class AdminService extends CrudService {
       // 保存数据
       entity = await this.createMem({ regId: _id });
       // 更新注册状态
-      await this.mReg.findOneAndUpdate({ _id: ObjectID(_id) }, { status: RegisterStatus.NORMAL }).exec();
+      await this.mReg.findOneAndUpdate({ _id: ObjectId(_id) }, { status: RegisterStatus.NORMAL }).exec();
     } else {
       // 更新注册状态
-      await this.mReg.findOneAndUpdate({ _id: ObjectID(_id) }, { status: RegisterStatus.REJECT }).exec();
+      await this.mReg.findOneAndUpdate({ _id: ObjectId(_id) }, { status: RegisterStatus.REJECT }).exec();
     }
     // TODO: 发送状态变更事件
     // 此处需要增加发送审核状态变更事件的相关代码
