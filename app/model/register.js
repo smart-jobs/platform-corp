@@ -2,6 +2,17 @@
 const Schema = require('mongoose').Schema;
 const { CodeNamePair, Secret } = require('naf-framework-mongoose/lib/model/schema');
 
+// 绑定账号
+const accountSchema = new Schema({
+  // 帐号类型：qq、weixin、email、mobile、weibo等
+  type: { type: String, required: true, maxLength: 64 },
+  // 账号绑定ID
+  account: { type: String, required: true, maxLength: 128 },
+  // 绑定状态: 0-未验证、1-已绑定、2-解除绑定
+  bind: { type: String, required: true, maxLength: 64, default: '0' },
+}, { timestamps: true });
+accountSchema.index({ type: 1, account: 1 });
+
 // 企业注册信息，多租户模式
 const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
@@ -21,12 +32,12 @@ const SchemaDefine = {
   },
   // 联系信息
   contact: {
-    person: String, // 联系人
-    mobile: String, // 手机
-    phone: String, // 电话
+    person: { type: String, maxLength: 50 }, // 联系人
+    mobile: { type: String, maxLength: 50 }, // 手机
+    phone: { type: String, maxLength: 50 }, // 电话
     email: { type: String, maxLength: 128 },
-    url: { type: String, maxLength: 128 },
-    postcode: { type: String, maxLength: 128 },
+    url: { type: String, maxLength: 256 },
+    postcode: { type: String, maxLength: 50 },
     address: { type: String, maxLength: 128 },
   },
   credentials: { // 认证信息，三证合一的单位只需要上传新版营业执照，使用组织机构代码注册的单位下面四种证书至少上传两项
@@ -34,6 +45,11 @@ const SchemaDefine = {
     zzjgdmz: String, // 组织机构代码证
     swdjz: String, // 税务登记证
     sbjntz: String, // 社保缴纳通知
+  },
+  // 绑定账号信息
+  accounts: {
+    type: [ accountSchema ],
+    default: [],
   },
   meta: {
     state: {// 数据状态

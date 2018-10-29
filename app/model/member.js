@@ -32,12 +32,12 @@ const SchemaDefine = {
   },
   // 联系信息
   contact: {
-    person: String, // 联系人
-    mobile: String, // 手机
-    phone: String, // 电话
+    person: { type: String, maxLength: 50 }, // 联系人
+    mobile: { type: String, maxLength: 50 }, // 手机
+    phone: { type: String, maxLength: 50 }, // 电话
     email: { type: String, maxLength: 128 },
-    url: { type: String, maxLength: 128 },
-    postcode: { type: String, maxLength: 128 },
+    url: { type: String, maxLength: 256 },
+    postcode: { type: String, maxLength: 50 },
     address: { type: String, maxLength: 128 },
   },
   credentials: { // 认证信息，三证合一的单位只需要上传新版营业执照，使用组织机构代码注册的单位下面四种证书至少上传两项

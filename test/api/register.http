@@ -5,15 +5,15 @@ content-type: application/json
 Accept: application/json
 
 {
-  "corpname": "福瑞科技",
-  "email": "frkj@qq.cn",
+  "corpname": "慧安通信",
+  "email": "hatx@qq.cn",
   "password": "123456"
 }
 
 ###
 #企业注册2
 #POST http://localhost:7001/register/complete?_id=5a95c5599ceec810809c92d5 HTTP/1.1
-POST http://localhost:8102/api/register/complete?_id=5bd232083931128db02d9848 HTTP/1.1
+POST http://localhost:8102/api/register/complete?id=5bd65b90e7f133acd823a07d HTTP/1.1
 #POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
 content-type: application/json
 Accept: application/json
@@ -39,14 +39,14 @@ Accept: application/json
       "code": "220100",
       "name": "吉林省长春市"
     }, 
-    "legalPerson": "杨帆",
+    "legalPerson": "刘玉国",
     "registerTime": "2018-02-28",
     "registerMoney": "100万"
   },
   "contact": {
-    "person": "杨帆",
-    "mobile": "13500000000",
-    "phone": "13500000000",
+    "person": "刘玉国",
+    "mobile": "13500000001",
+    "phone": "13500000001",
     "email": "10000@qq.com",
     "url": "http://www.baidu.com",
     "postcode": "130000",

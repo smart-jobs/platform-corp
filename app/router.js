@@ -18,6 +18,7 @@ module.exports = app => {
   router.get('/api/simple/:_id', controller.member.simple);
   router.get('/api/info', controller.member.info_g);
   router.get('/api/simple', controller.member.simple_g);
+  router.get('/api/account/list', controller.member.findByAccount_g);// 【全站】按账号查询注册信息
 
   // 企业管理
   router.post('/admin/reviewReg', controller.admin.reviewReg);

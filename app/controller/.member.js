@@ -1,15 +1,15 @@
 module.exports = {
   "create": {
-    "requestBody": ["corpname", "email", "password"]
+    "requestBody": ["corpname", "email", "password", "account"]
   },
   "complete": {
-    "query": ["_id"],
+    "query": ["id"],
     "requestBody": [
       "description", "info", "contact", "credentials" 
     ]
   },
   "bind": {
-    "query": ["_id"],
+    "query": ["id"],
     "requestBody": [
       "type", "account"
     ],
@@ -19,7 +19,7 @@ module.exports = {
     "service": "bind"
   },
   "unbind": {
-    "query": ["_id"],
+    "query": ["id"],
     "requestBody": [
       "type", "account"
     ],
@@ -29,17 +29,18 @@ module.exports = {
     "service": "bind"
   },
   "login": {
+    "query": ["id"],
     "requestBody": ["username", "password"]
   },
   "passwd": {
-    "query": ["_id"],
+    "query": ["id"],
     "requestBody": ["oldpass", "newpass"]
   },
   "info": {
-    "params": ["_id"]
+    "params": ["id"]
   },
   "simple": {
-    "params": ["_id"],
+    "params": ["id"],
     "options": {
       "simple": true
     },
@@ -47,14 +48,18 @@ module.exports = {
   },
   // 【全站】
   "info_g": {
-    "query": ["_id"],
+    "query": ["id"],
     "service": "memberGlobal.info"
   },
   "simple_g": {
-    "query": ["_id"],
+    "query": ["id"],
     "options": {
       "simple": true
     },
     "service": "memberGlobal.info"
+  },
+  "findByAccount_g": {
+    "query": ["type", "account"],
+    "service": "memberGlobal.findByAccount",
   },
 };
