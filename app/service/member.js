@@ -173,7 +173,7 @@ class MembershipService extends CrudService {
 
     const rs = await this.mReg.find({ corpname }, '+passwd').exec();
     if (rs) {
-      return rs.findOne(p => p.passwd && p.passwd.secret === password);
+      return rs.find(p => p.passwd && p.passwd.secret === password);
     }
   }
 
