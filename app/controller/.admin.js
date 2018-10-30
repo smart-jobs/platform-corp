@@ -1,6 +1,6 @@
 module.exports = {
   "reviewReg": {
-    "query": ["id"],
+    "query": ["!id"],
     "requestBody": ["status"]
   }
 };
