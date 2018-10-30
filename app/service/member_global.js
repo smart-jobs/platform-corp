@@ -33,14 +33,14 @@ class MembershipGlobalService extends CrudService {
     assert(type, 'type不能为空');
     assert(account, 'account不能为空');
 
-    const projection = { corpname: 1, status: 1, __tenant: 1 };
+    const projection = { corpname: 1, status: 1, _tenant: 1 };
     const rs = await this.model.find({ accounts: { $elemMatch: trimData({ type, account, bind: BindStatus.BIND }) } }, projection).exec();
 
     return rs.map(p => ({
       id: p.id,
       corpname: p.corpname,
       status: p.status,
-      unit: p.__tenant,
+      unit: p._tenant,
     }));
   }
 
