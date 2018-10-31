@@ -164,7 +164,7 @@ class MembershipService extends CrudService {
 
   // 获取注册中信息
   async fetchReg({ corpname, password, id }) {
-    assert(corpname || id, '_id和corpname不能同时为空');
+    assert(corpname || id, 'id和corpname不能同时为空');
 
     // 查询所有注册信息
     if (id) {

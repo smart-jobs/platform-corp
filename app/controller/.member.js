@@ -8,6 +8,10 @@ module.exports = {
       "description", "info", "contact", "credentials" 
     ]
   },
+  // 获取注册信息详情
+  "fetchReg": {
+    "query": ["id"]
+  },
   "bind": {
     "query": ["!id"],
     "requestBody": [

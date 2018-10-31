@@ -12,11 +12,12 @@ Accept: application/json
 
 ###
 #企业注册2
-#POST http://localhost:7001/register/complete?_id=5a95c5599ceec810809c92d5 HTTP/1.1
+#POST http://localhost:7001/register/complete?id=5a95c5599ceec810809c92d5 HTTP/1.1
 POST http://localhost:8102/api/register/complete?id=5bd65b90e7f133acd823a07d HTTP/1.1
 #POST http://oa.chinahuian.cn/platform/corp/register/complete?_id=5a9675d74446e17f1df0d447 HTTP/1.1
 content-type: application/json
 Accept: application/json
+X-Tenant: 99991
 
 {
   "description": "none",
@@ -81,3 +82,10 @@ Accept: application/json
 {
     "corpname": "福瑞科技1"
 }
+
+###
+#获取企业注册信息
+GET http://localhost:8102/api/register/fetch?id=5bd232083931128db02d9848 HTTP/1.1
+content-type: application/json
+Accept: application/json
+X-Tenant: 99991
