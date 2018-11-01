@@ -12,7 +12,7 @@ const { RegisterStatus, BindStatus, OperationType } = require('../util/constants
 
 class MembershipService extends CrudService {
   constructor(ctx) {
-    super(ctx, 'plat_corp_register');
+    super(ctx, 'plat_corp_member');
     this.mReg = this.ctx.model.Register;
     this.mMem = this.ctx.model.Member;
     this.model = this.mMem;

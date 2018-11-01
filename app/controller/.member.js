@@ -66,4 +66,18 @@ module.exports = {
     "query": ["type", "account"],
     "service": "memberGlobal.findByAccount",
   },
+  "query": {
+    "parameters": {
+      "query": ["status", "corpname"],
+    },
+    "options": {
+      "projection": "corpname status info contact meta",
+      "count": true,
+    },
+  },
+  "fetch": {
+    "parameters": {
+      "query": ["!id"],
+    },
+  },
 };

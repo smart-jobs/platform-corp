@@ -22,5 +22,10 @@ module.exports = app => {
   router.get('/api/account/list', controller.member.findByAccount_g);// 【全站】按账号查询注册信息
 
   // 企业管理
-  router.post('/admin/reviewReg', controller.admin.reviewReg);
+  router.get('/admin/register/query', controller.register.query); // 查询企业注册信息
+  router.get('/admin/register/fetch', controller.register.fetch); // 获取企业注册详情
+  router.post('/admin/register/update', controller.register.update); // 修改企业信息
+  router.post('/admin/register/review', controller.admin.reviewReg); // 审核企业信息
+  router.get('/admin/member/query', controller.member.query); // 查询企业信息
+  router.get('/admin/member/fetch', controller.member.fetch); // 获取企业详情
 };
