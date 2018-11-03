@@ -33,7 +33,7 @@ module.exports = {
     "service": "bind"
   },
   "login": {
-    "query": ["!id"],
+    "query": ["id"],
     "requestBody": ["username", "password"]
   },
   "passwd": {

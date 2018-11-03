@@ -20,14 +20,14 @@ class AdminService extends CrudService {
     assert(regId, 'regId不能为空');
 
     // TODO: 检查数据是否存在
-    const entity = await this.mReg.findById(regId).exec();
+    const entity = await this.mReg.findById(regId, '+passwd').exec();
     if (isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
-    const { corpname, password, info, contact, credentials, accounts } = entity;
+    const { corpname, passwd, info, contact, credentials, accounts } = entity;
     // TODO:保存数据，初始记录只包含企业名称、email和密码
     const res = await this.mMem.create({
       _id: ObjectId(regId),
-      corpname, password, info, contact, credentials,
+      corpname, passwd, info, contact, credentials,
       accounts,
       status: MembershipStatus.NORMAL });
 
