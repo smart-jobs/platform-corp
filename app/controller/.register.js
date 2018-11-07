@@ -1,4 +1,19 @@
 module.exports = {
+  "create": {
+    "parameters": {
+      "query": ["!openid"],
+    },
+    "requestBody": ["!corpname"]
+  },
+  "complete": {
+    "parameters": {
+      "params": ["!corpid"],
+      "query": ["!openid"],
+    },
+    "requestBody": [
+      "description", "info", "contact", "credentials" 
+    ]
+  },
   "query": {
     "parameters": {
       "query": ["status", "corpname"],
@@ -8,22 +23,47 @@ module.exports = {
       "count": true,
     },
   },
-  "fetch": {
+  "details": {
     "parameters": {
-      "query": ["!id"],
+      "params": ["!corpid"],
     },
     "options": {
-      "projection": "-accounts"
+      "projection": "+description"
     },
+    "service": "fetch",
+  },
+  "info": {
+    "parameters": {
+      "params": ["!corpid"],
+    },
+    "options": {
+      "projection": { corpid: 1, corpname: 1, info: 1, contact: 1 },
+    },
+    "service": "fetch",
+  },
+  "simple": {
+    "parameters": {
+      "params": ["!corpid"],
+    },
+    "options": {
+      "projection": { corpid: 1, corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 },
+    },
+    "service": "fetch",
   },
   "update": {
     "parameters": {
-      "query": ["!id"],
+      "params": ["!corpid"],
     },
     "requestBody": [ "corpname", "description",
       "info.corptype", "info.corpcode", "info.scale", "info.nature", "info.industry",
       "info.city", "info.legalPerson", "info.registerTime", "info.registerMoney",
       "contact.person", "contact.mobile", "contact.phone", "contact.email",
       "contact.url", "contact.postcode", "contact.address"]
+  },
+  "review": {
+    "parameters": {
+      "params": ["!corpid"],
+    },
+    "requestBody": ["status"]
   },
 };

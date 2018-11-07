@@ -18,7 +18,11 @@ exports.OperationType = {
   VERIFY: '2', // 验证账号
 };
 exports.BindStatus = {
-  NEW: '0', // 新绑定请求，未验证生效
-  BIND: '1', // 已生效绑定
+  BIND: '0', // 已生效绑定
+  PENDING: '1', // 待审核
   UNBIND: '2', // 解除绑定状态
+};
+exports.BindType = {
+  USER: '0', // 普通用户
+  ADMIN: '1', // 管理员
 };
