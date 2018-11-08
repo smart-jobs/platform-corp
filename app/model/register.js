@@ -11,7 +11,7 @@ const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   description: { type: String, maxLength: 10240, select: false }, // 企业描述详情
   status: { type: String, default: RegisterStatus.NEW, maxLength: 64 }, // 状态: 0-正常(审核通过)；1-注册；2-信息提交
-  passwd: { type: Secret, select: false },
+  passwd: { type: Secret, select: false }, // 注册密码，保留字段
   info: CorpInfo, // 登记信息
   contact: CorpContact, // 联系信息
   credentials: CorpCredentials, // 认证信息

@@ -34,7 +34,8 @@ module.exports = {
   },
   "info": {
     "parameters": {
-      "params": ["!corpid"],
+      "params": ["corpid"],
+      "query": ["corpid"],
     },
     "options": {
       "projection": { corpid: 1, corpname: 1, info: 1, contact: 1 },
@@ -43,7 +44,8 @@ module.exports = {
   },
   "simple": {
     "parameters": {
-      "params": ["!corpid"],
+      "params": ["corpid"],
+      "query": ["corpid"],
     },
     "options": {
       "projection": { corpid: 1, corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 },

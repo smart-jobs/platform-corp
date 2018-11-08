@@ -36,7 +36,8 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "pm2": "pm2 start server.js --name=platform-corp"
   },
   "ci": {
     "version": "8"

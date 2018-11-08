@@ -1,19 +1,19 @@
 module.exports = {
-  // 创建微信用户【分站】
+  // 创建微信用户【全站】
   "create": {
     "parameters": {
       "query": ["!openid"],
     },
     "requestBody": ["name", "mobile", "email"]
   },
-  // 修改用户信息【分站】
+  // 修改用户信息【全站】
   "update": {
     "parameters": {
       "query": ["!openid"],
     },
     "requestBody": [ "name", "mobile", "email", "corpid", "corpname", "remark", "status"]
   },
-  // 获取用户信息【分站】
+  // 获取用户信息【全站】
   "fetch": {
     "parameters": {
       "query": ["!openid"],

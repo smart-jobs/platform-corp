@@ -8,13 +8,13 @@ const { CorpError, ErrorMessage } = require('../util/error-code');
 /**
  * 企业用户微信信息
  */
-class WeixinService extends CrudService {
+class AccountService extends CrudService {
   constructor(ctx) {
-    super(ctx, 'plat_corp_weixin');
-    this.model = this.ctx.model.WeixinUser;
-    this.mUser = this.ctx.model.WeixinUser;
-    this.mBind = this.ctx.model.WeixinBind;
-    this.mCorp = this.ctx.model.Member;
+    super(ctx, 'plat_corp_account');
+    this.model = this.ctx.model.AccountUser;
+    this.mUser = this.ctx.model.AccountUser;
+    this.mBind = this.ctx.model.AccountBind;
+    this.mCorp = this.ctx.model.Register;
   }
 
   // 注册企业用户通行证
@@ -72,4 +72,4 @@ class WeixinService extends CrudService {
 
 }
 
-module.exports = WeixinService;
+module.exports = AccountService;

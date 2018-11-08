@@ -19,5 +19,5 @@ schema.plugin(metaPlugin);
 
 module.exports = app => {
   const { mongoose } = app;
-  return mongoose.model('CorpWeixinBind', schema, 'plat_corp_weixin_bind');
+  return mongoose.model('CorpAccountBind', schema, 'plat_corp_account_bind');
 };

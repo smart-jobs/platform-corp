@@ -7,7 +7,7 @@ const { RegisterStatus } = require('../util/constants');
 
 class InfobaseService extends CrudService {
   constructor(ctx) {
-    super(ctx, 'corp_infobase');
+    super(ctx, 'plat_corp_infobase');
     this.model = this.ctx.model.Infobase;
   }
 

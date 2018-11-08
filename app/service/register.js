@@ -14,8 +14,8 @@ class RegisterService extends CrudService {
     super(ctx, 'plat_corp_register');
     this.model = this.ctx.model.Register;
     this.mReg = this.ctx.model.Register;
-    this.mBind = this.ctx.model.WeixinBind;
-    this.mUser = this.ctx.model.WeixinUser;
+    this.mBind = this.ctx.model.AccountBind;
+    this.mUser = this.ctx.model.AccountUser;
   }
 
   // 【用户】创建企业信息
@@ -95,17 +95,6 @@ class RegisterService extends CrudService {
     // 此处需要增加发送审核状态变更事件的相关代码
 
     return reg;
-  }
-
-  // 获取企业信息
-  async info({ corpid, simple }) {
-    assert(corpid, 'corpid不能为空');
-
-    const entity = this.model.findOne({ corpid },
-      simple ?
-        { corpid: 1, corpname: 1, 'info.scale': 1, 'info.nature': 1, 'info.industry': 1, 'info.city': 1 }
-        : { corpid: 1, corpname: 1, info: 1, contact: 1 }).exec();
-    return entity;
   }
 
 }

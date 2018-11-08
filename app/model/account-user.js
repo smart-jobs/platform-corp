@@ -21,5 +21,5 @@ schema.plugin(metaPlugin);
 
 module.exports = app => {
   const { mongoose } = app;
-  return mongoose.model('CorpWeixinUser', schema, 'plat_corp_weixin_user');
+  return mongoose.model('CorpAccountUser', schema, 'plat_corp_account_user');
 };
