@@ -7,8 +7,8 @@ module.exports = {
   },
   "complete": {
     "parameters": {
-      "params": ["!corpid"],
-      "query": ["!openid"],
+      "params": ["corpid"],
+      "query": ["!openid", "corpid"],
     },
     "requestBody": [
       "description", "info", "contact", "credentials" 
@@ -25,7 +25,8 @@ module.exports = {
   },
   "details": {
     "parameters": {
-      "params": ["!corpid"],
+      "params": ["corpid"],
+      "query": ["corpid"],
     },
     "options": {
       "projection": "+description"
@@ -54,7 +55,8 @@ module.exports = {
   },
   "update": {
     "parameters": {
-      "params": ["!corpid"],
+      "params": ["corpid"],
+      "query": ["corpid"],
     },
     "requestBody": [ "corpname", "description",
       "info.corptype", "info.corpcode", "info.scale", "info.nature", "info.industry",

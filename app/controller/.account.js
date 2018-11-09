@@ -1,4 +1,10 @@
 module.exports = {
+  // 微信用户登录【全站】
+  "login": {
+    "parameters": {
+      "query": ["!openid"],
+    },
+  },
   // 创建微信用户【全站】
   "create": {
     "parameters": {

@@ -17,6 +17,23 @@ class AccountService extends CrudService {
     this.mCorp = this.ctx.model.Register;
   }
 
+  // 企业用户微信登录，返回用户信息和企业信息
+  async login({ openid }) {
+    assert(openid, 'openid不能为空');
+
+    // TODO: 【全站服务】
+    this.tenant = 'global';
+
+    // TODO: 检查用户是否存在
+    const user = await this.model.findOne({ openid }).exec();
+    if (!user) throw new BusinessError(CorpError.USER_NOT_EXIST, '用户不存在');
+
+    // TODO: 查询绑定关系
+    const bind = await this.ctx.model.AccountBind.find({ openid }).exec();
+    const units = bind.map(p => p._tenant);
+    return { user, units };
+  }
+
   // 注册企业用户通行证
   async create({ openid }, { name, mobile, email }) {
     assert(openid, 'openid不能为空');
@@ -25,9 +42,9 @@ class AccountService extends CrudService {
 
     // TODO: 检查数据是否存在
     const doc = await this.model.findOne({ openid }).exec();
-    if (doc) throw new BusinessError(CorpError.BIND_EXISTED, ErrorMessage.BIND_EXISTED);
+    if (doc) throw new BusinessError(CorpError.USER_EXISTED, ErrorMessage.USER_EXISTED);
 
-    // TODO:保存数据，初始记录只包含企业名称、email和密码
+    // TODO: 保存数据，初始记录只包含企业名称、email和密码
     const res = await this.model.create({ openid, name, mobile, email });
     return res;
   }
