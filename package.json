@@ -37,7 +37,8 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "pm2": "pm2 start server.js --name=platform-corp"
+    "pm2": "pm2 start server.js --name=platform-corp",
+    "restart": "pm2 restart platform-corp"
   },
   "ci": {
     "version": "8"
