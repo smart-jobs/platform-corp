@@ -29,7 +29,7 @@ class AccountService extends CrudService {
     if (!user) throw new BusinessError(CorpError.USER_NOT_EXIST, '用户不存在');
 
     // TODO: 查询绑定关系
-    const bind = await this.ctx.model.AccountBind.find({ openid }).exec();
+    const bind = await this.ctx.model.AccountBind.find({ openid }).exec(); // global 模式下必须用这种方式使用model
     const units = bind.map(p => p._tenant);
     return { user, units };
   }

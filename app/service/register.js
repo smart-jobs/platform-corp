@@ -102,12 +102,13 @@ class RegisterService extends CrudService {
     assert(corpid, 'corpid不能为空');
     assert(_.isUndefined(units) || _.isArray(units), 'units必须是一个字符串数组');
 
-    this.tenant = 'global';
     const filter = { corpid };
     if (_.isArray(units)) {
       filter._tenant = { $in: units };
     }
-    const rs = await this.mReg.find(filter).exec();
+
+    this.tenant = 'global';
+    const rs = await this.ctx.model.Register.find(filter).exec(); // global 模式下必须用这种方式使用model
     return rs;
   }
 }
