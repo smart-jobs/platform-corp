@@ -97,6 +97,15 @@ class RegisterService extends CrudService {
     return reg;
   }
 
+  // 【全站】批量查询企业分站信息
+  async batch({ corpid }, { units = [] }) {
+    assert(corpid, 'corpid不能为空');
+    assert(_.isArray(units), 'units必须是一个字符串数组');
+
+    this.tenant = 'global';
+    const rs = await this.mReg.find({ corpid, _tenant: { $in: units } }).exec();
+    return rs;
+  }
 }
 
 module.exports = RegisterService;

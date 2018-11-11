@@ -8,7 +8,7 @@ module.exports = {
   "complete": {
     "parameters": {
       "params": ["corpid"],
-      "query": ["!openid", "corpid"],
+      "query": ["corpid"],
     },
     "requestBody": [
       "description", "info", "contact", "credentials" 
@@ -69,5 +69,12 @@ module.exports = {
       "params": ["!corpid"],
     },
     "requestBody": ["status"]
+  },
+  "batch": {
+    "parameters": {
+      "params": ["corpid"],
+      "query": ["corpid"],
+    },
+    "requestBody": ["!units"]
   },
 };
