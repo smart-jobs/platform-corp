@@ -38,7 +38,7 @@ class RegisterService extends CrudService {
     const reg = await this.mReg.create({ corpid: corp.id, corpname });
 
     // TODO: 保存绑定关系
-    await this.mBind.create({ openid, corpid: corp.id, status: BindStatus.BIND, type: BindType.ADMIN });
+    await this.mBind.create({ openid, corpid: corp.id, corpname, status: BindStatus.BIND, type: BindType.ADMIN });
     await this.mUser.findOneAndUpdate({ openid }, { corpid: corp.id, corpname });
 
     return reg;
