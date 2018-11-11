@@ -19,8 +19,8 @@ module.exports = app => {
   router.get('/api/details', controller.register.details); // 【分站】获得企业详情
   router.get('/api/info', controller.register.info); // 【分站】获得企业基本信息
   router.get('/api/simple', controller.register.simple); // 【分站】获得企业简要信息
-  router.get('/api/login', controller.register.simple); // 【全站】企业用户微信登录
-  router.get('/api/batch', controller.register.batch); // 【全站】批量获取企业指定分站注册信息
+  router.all('/api/batch', controller.register.batch); // 【全站】批量获取企业指定分站注册信息
+  router.all('/api/login', controller.account.login); // 【全站】企业用户微信登录
 
   // router.post('/api/:corpid/complete', controller.register.complete); // 【分站】完善企业信息
   // router.get('/api/:corpid/details', controller.register.details); // 【分站】获得企业详情

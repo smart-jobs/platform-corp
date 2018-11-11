@@ -75,6 +75,6 @@ module.exports = {
       "params": ["corpid"],
       "query": ["corpid"],
     },
-    "requestBody": ["!units"]
+    "requestBody": ["units"]
   },
 };
