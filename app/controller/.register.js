@@ -68,7 +68,7 @@ module.exports = {
     "parameters": {
       "params": ["!corpid"],
     },
-    "requestBody": ["status"]
+    "requestBody": ["status", "remark"]
   },
   "batch": {
     "parameters": {

@@ -72,7 +72,7 @@ class RegisterService extends CrudService {
   }
 
   // 【管理员】审核申请
-  async review({ corpid }, { status }) {
+  async review({ corpid }, { status, remark }) {
     assert(corpid, 'corpid不能为空');
     assert(status === RegisterStatus.NORMAL || status === RegisterStatus.REJECT, 'status值无效');
 
@@ -83,6 +83,7 @@ class RegisterService extends CrudService {
 
     // 更新注册状态
     reg.status = status;
+    reg.remark = remark;
     await reg.save();
 
     if (status === RegisterStatus.NORMAL) {
