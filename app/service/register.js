@@ -16,6 +16,7 @@ class RegisterService extends CrudService {
     this.mReg = this.ctx.model.Register;
     this.mBind = this.ctx.model.AccountBind;
     this.mUser = this.ctx.model.AccountUser;
+    this.mInfo = this.ctx.model.Infobase;
   }
 
   // 【用户】创建企业信息
