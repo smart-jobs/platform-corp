@@ -26,7 +26,7 @@ module.exports = {
       "query": ["status", "corpname"],
     },
     "options": {
-      "projection": "corpname status info contact meta",
+      "projection": "corpid corpname status info contact meta",
       "count": true,
     },
   },

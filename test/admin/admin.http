@@ -1,10 +1,10 @@
 ###
 #审核通过
-POST http://localhost:8102/admin/reg/5bed1259e5a0026e52059b8e/review HTTP/1.1
+POST http://localhost:8102/admin/reg/5bee2e3e9cdcae79a963bab6/review HTTP/1.1
 #POST http://oa.chinahuian.cn/platform/admin/corp/reviewReg?_id=5a9675d74446e17f1df0d447 HTTP/1.1
 content-type: application/json
 Accept: application/json
-X-Tenant: 99991
+X-Tenant: 10186
 
 {
   "status": "0"
