@@ -29,9 +29,9 @@ module.exports = app => {
 
   // 管理接口
   router.get('/admin/reg/query', controller.register.query); // 查询企业注册信息
-  router.get('/admin/reg/:corpid/details', controller.register.details); // 获取企业注册详情
-  router.post('/admin/reg/:corpid/update', controller.register.update); // 修改企业信息
-  router.post('/admin/reg/:corpid/review', controller.register.review); // 审核企业信息
+  router.get('/admin/reg/:corpid/details_rest', controller.register.details); // 获取企业注册详情
+  router.post('/admin/reg/:corpid/update_rest', controller.register.update); // 修改企业信息
+  router.post('/admin/reg/:corpid/review_rest', controller.register.review); // 审核企业信息
   router.get('/admin/info/query', controller.infobase.query); // 查询总库企业信息
   router.get('/admin/info/:id/details', controller.infobase.details); // 获取总库企业详情
   router.post('/admin/info/:id/update', controller.infobase.update); // 修改总库企业信息
