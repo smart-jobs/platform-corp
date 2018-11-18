@@ -7,11 +7,11 @@
     "framework": "naf-framework-mongoose"
   },
   "dependencies": {
-    "egg": "^2.13.0",
+    "egg": "^2.14.0",
     "egg-scripts": "^2.10.0",
     "lodash": "^4.17.11",
     "naf-core": "^0.0.27",
-    "naf-framework-mongoose": "^0.5.6"
+    "naf-framework-mongoose": "^0.5.8"
   },
   "devDependencies": {
     "autod": "^3.0.1",
