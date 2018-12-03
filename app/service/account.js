@@ -77,7 +77,7 @@ class AccountService extends CrudService {
     return user;
   }
 
-  // 微信用户绑定分站企业
+  // 微信用户解除绑定分站企业
   async unbind({ openid }, { corpid }) {
     assert(openid, 'openid不能为空');
     assert(corpid, '企业ID不能为空');
