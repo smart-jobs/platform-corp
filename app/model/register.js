@@ -17,7 +17,7 @@ const SchemaDefine = {
   credentials: CorpCredentials, // 认证信息
   remark: { type: String, maxLength: 1024 }, // 备注信息，用于描述审核失败原因，或者其他情况
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ corpid: 1 });
 schema.index({ corpname: 1 });
 schema.index({ 'info.corpcode': 1 });

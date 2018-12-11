@@ -11,7 +11,7 @@ const SchemaDefine = {
   status: { type: String, default: BindStatus.PENDING, maxLength: 64 }, // 状态: 0-正常；1-待审核
   type: { type: String, default: BindType.USER, maxLength: 64 }, // 状态: 0-普通用户；1-管理员
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ openid: 1, corpid: 1 });
 schema.index({ openid: 1 });
 schema.index({ corpid: 1 });

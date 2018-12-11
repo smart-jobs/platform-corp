@@ -13,7 +13,7 @@ const SchemaDefine = {
   corpname: { type: String, required: false, maxLength: 128 }, // 企业名称，后更新
   remark: { type: String, maxLength: 256 }, // 备注
 };
-const schema = new Schema(SchemaDefine);
+const schema = new Schema(SchemaDefine, { toJSON: { virtuals: true } });
 schema.index({ openid: 1 }, { unique: true });
 schema.index({ mobile: 1 });
 schema.index({ corpname: 1 });
