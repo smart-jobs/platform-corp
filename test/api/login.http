@@ -2,14 +2,10 @@
 ###
 # 登录
 #POST http://localhost:7001/api/login HTTP/1.1
-POST http://oa.chinahuian.cn/platform/corp/login HTTP/1.1
+POST http://localhost:8102/api/login?openid=openid_2019031901 HTTP/1.1
 content-type: application/json
 Accept: application/json
 
-{
-  "username": "福瑞科技",
-  "password": "123456"
-}
 
 ###
 #修改密码
