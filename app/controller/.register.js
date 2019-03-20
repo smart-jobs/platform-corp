@@ -26,6 +26,9 @@ module.exports = {
       "query": ["status", "corpname"],
     },
     "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createdAt"],
+      "desc": true,
       "projection": "corpid corpname status info contact meta",
       "count": true,
     },

@@ -4,6 +4,9 @@ module.exports = {
       "query": ["status", "corpname"],
     },
     "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createdAt"],
+      "desc": true,
       "projection": "corpname status info contact meta",
       "count": true,
     },
