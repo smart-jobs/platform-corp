@@ -15,6 +15,7 @@ const SchemaDefine = {
 const schema = new Schema(SchemaDefine, { toJSON: { virtuals: true } });
 schema.index({ corpname: 1 });
 schema.index({ 'info.corpcode': 1 });
+schema.index({ status: 1 });
 schema.plugin(metaPlugin);
 
 module.exports = app => {

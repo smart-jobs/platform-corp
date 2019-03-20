@@ -21,6 +21,7 @@ const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtu
 schema.index({ corpid: 1 });
 schema.index({ corpname: 1 });
 schema.index({ 'info.corpcode': 1 });
+schema.index({ status: 1 });
 schema.plugin(metaPlugin);
 
 module.exports = app => {
