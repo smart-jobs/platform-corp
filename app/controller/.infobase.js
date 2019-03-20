@@ -2,6 +2,7 @@ module.exports = {
   "query": {
     "parameters": {
       "query": ["status", "corpname"],
+      "options": { "status": "0" },
     },
     "options": {
       "query": ["skip", "limit"],

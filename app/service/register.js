@@ -90,7 +90,7 @@ class RegisterService extends CrudService {
     if (status === RegisterStatus.NORMAL) {
       // TODO: 保存到企业总库
       const { description, info, contact, credentials } = reg;
-      await this.mInfo.findByIdAndUpdate(corpid, { description, info, contact, credentials });
+      await this.mInfo.findByIdAndUpdate(corpid, { description, info, contact, credentials, status: RegisterStatus.NORMAL });
     }
 
     // TODO: 发送状态变更事件
